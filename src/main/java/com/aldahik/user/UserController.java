@@ -1,11 +1,9 @@
 package com.aldahik.user;
 
-import com.aldahik.workout.WorkoutService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.aldahik.user.dto.UserRequest;
+import com.aldahik.user.dto.UserResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/users")
@@ -13,18 +11,23 @@ public class UserController {
 
     private final UserService userService;
 
-
-    public UserController(UserService userService, WorkoutService workoutService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/{userid}")
-    public User getUserById(@PathVariable Integer userid){
+    public UserResponse getUserById(@PathVariable Integer userid) {
         return userService.getUserById(userid);
     }
 
     @GetMapping("/name/{username}")
-    public User getUserByUsername(@PathVariable String username){
+    public UserResponse getUserByUsername(@PathVariable String username) {
         return userService.getUserByUsername(username);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserResponse createUser(@RequestBody UserRequest request) {
+        return userService.createUser(request);
     }
 }

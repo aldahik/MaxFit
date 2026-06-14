@@ -1,39 +1,37 @@
 package com.aldahik.workout;
 
-import com.aldahik.user.User;
 import com.aldahik.exercise.Exercise;
+import com.aldahik.user.User;
 import jakarta.persistence.*;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.Duration;
 
 @Entity
-public class Workout{
+public class Workout {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer workoutId;
     private String name;
+    private Duration duration;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "workoutId")
     private List<Exercise> exercisesList = new ArrayList<>();
-    private Duration workout_duration;
+
     @ManyToOne
     private User user;
 
-    public Workout(Integer workoutId) {
-        this.workoutId = workoutId;
-    }
+    public Workout() {}
 
-    public Workout() {
-
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+    public Integer getWorkoutId() { return workoutId; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public Duration getDuration() { return duration; }
+    public void setDuration(Duration duration) { this.duration = duration; }
+    public List<Exercise> getExercisesList() { return exercisesList; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }
