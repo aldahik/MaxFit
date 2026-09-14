@@ -28,16 +28,16 @@ public class UserServiceTest {
     void getUserById_shouldReturnUserResponseWhenUserExist() {
         User user = new User("test", "test", "test", 1);
 
-        given(userRepository.findById(user.getUserid())).willReturn(Optional.of(user));
+        given(userRepository.findById(user.getUserId())).willReturn(Optional.of(user));
 
-        UserResponse result = userService.getUserById(user.getUserid());
-        assertEquals(user.getUserid(), result.userid());
+        UserResponse result = userService.getUserById(user.getUserId());
+        assertEquals(user.getUserId(), result.userId());
         assertEquals(user.getUsername(), result.username());
         assertEquals(user.getFirstname(), result.firstname());
         assertEquals(user.getLastname(), result.lastname());
         assertEquals(user.getAge(), result.age());
 
-        verify(userRepository).findById((user.getUserid()));
+        verify(userRepository).findById((user.getUserId()));
     }
 
     @Test

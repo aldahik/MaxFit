@@ -12,7 +12,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userid;
+    private Integer userId;
     private String username;
     private String firstname;
     private String lastname;
@@ -30,13 +30,18 @@ public class User {
         this.age = age;
     }
 
-    public Integer getUserid() { return userid; }
+    public Integer getUserId() { return userId; }
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
     public String getFirstname() { return firstname; }
     public void setFirstname(String firstname) { this.firstname = firstname; }
     public String getLastname() { return lastname; }
     public void setLastname(String lastname) { this.lastname = lastname; }
+
+    public List<Workout> getWorkoutsList() {
+        return workoutsList;
+    }
+
     public Integer getAge() { return age; }
     public void setAge(Integer age) { this.age = age; }
 
