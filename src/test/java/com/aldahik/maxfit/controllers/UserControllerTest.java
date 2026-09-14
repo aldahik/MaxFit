@@ -23,7 +23,6 @@ public class UserControllerTest {
     @MockitoBean
     private UserService userService;
 
-
     @Test
     void getUserById_ShouldReturnUserResponseWhenUserExists() throws Exception {
         UserResponse userResponse = new UserResponse(1, "test", "test", "test", 1);

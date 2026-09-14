@@ -23,6 +23,15 @@ public class Exercise {
         this.reps = reps;
     }
 
+    public Exercise(String name, ExerciseType type, Integer sets, Integer reps, Integer rir, String notes) {
+        this.name = name;
+        this.type = type;
+        this.sets = sets;
+        this.reps = reps;
+        this.rir = rir;
+        this.notes = notes;
+    }
+
     public Integer getId() { return id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

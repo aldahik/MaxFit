@@ -15,13 +15,19 @@ public class Workout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer workoutId;
     private String name;
-    private Duration duration;
+
+    public void setExercisesList(List<Exercise> exercisesList) {
+        this.exercisesList = exercisesList;
+    }
+
+    private Duration durationSeconds;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "workoutId")
     private List<Exercise> exercisesList = new ArrayList<>();
 
     @ManyToOne
+    @JoinColumn(name = "userid")
     private User user;
 
     public Workout() {}
@@ -29,8 +35,8 @@ public class Workout {
     public Integer getWorkoutId() { return workoutId; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-    public Duration getDuration() { return duration; }
-    public void setDuration(Duration duration) { this.duration = duration; }
+    public Duration getDurationSeconds() { return durationSeconds; }
+    public void setDurationSeconds(Duration duration) { this.durationSeconds = duration; }
     public List<Exercise> getExercisesList() { return exercisesList; }
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }

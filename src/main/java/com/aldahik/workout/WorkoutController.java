@@ -5,13 +5,15 @@ import com.aldahik.exercise.dto.ExerciseRequest;
 import com.aldahik.exercise.dto.ExerciseResponse;
 import com.aldahik.workout.dto.WorkoutRequest;
 import com.aldahik.workout.dto.WorkoutResponse;
+import com.aldahik.workout.dto.WorkoutSummaryResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/users/{userid}/workouts")
+@RequestMapping("api/users/{userId}/workouts")
 public class WorkoutController {
 
     private final WorkoutService workoutService;
@@ -23,14 +25,14 @@ public class WorkoutController {
     }
 
     @GetMapping
-    public List<WorkoutResponse> getUsersWorkouts(@PathVariable Integer userid) {
-        return workoutService.getUsersWorkouts(userid);
+    public List<WorkoutSummaryResponse> getUsersWorkouts(@PathVariable Integer userId) {
+        return workoutService.getUsersWorkouts(userId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public WorkoutResponse createWorkout(@PathVariable Integer userid, @RequestBody WorkoutRequest request) {
-        return workoutService.createWorkout(userid, request);
+    public WorkoutResponse createWorkout(@PathVariable Integer userId, @Valid @RequestBody WorkoutRequest request) {
+        return workoutService.createWorkout(userId, request);
     }
 
     @GetMapping("/{workoutId}/exercises")
